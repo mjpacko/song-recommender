@@ -1,6 +1,6 @@
 # Discoverfy Readme Guide
 
-![App Screenshot](images/screenshot_readme.gif) 
+![App Screenshot](images/interface_gif.gif) 
 
 ## What's Discoverfy?
 
