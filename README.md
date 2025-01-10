@@ -19,7 +19,7 @@ TBD
 ### Resources
 
 ### File Structure
-
+```
 song-recommender/
 ├── .venv/
 ├── .gitignore
@@ -51,6 +51,7 @@ song-recommender/
     ├── recommender_app.py
     └── requirements.txt
 └── README.md
+```
 
 ### Steps to Run the App Locally
 
