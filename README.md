@@ -10,7 +10,7 @@ With its blend of machine learning and Spotify's vast music library, **DiscoverT
 
 ### Screenshot
 
-![App Screenshot](images\screenshot_readme.gif)![Alt Text: Screenshot of the app interface]()
+![App Screenshot]([images\screenshot_readme.gif](https://github.com/mjpacko/song-recommender/blob/ca4931d6a0c70c033f79babce81527b480205575/images/screenshot_readme.gif))![Alt Text: Screenshot of the app interface]()
 
 ### Link to App
 
