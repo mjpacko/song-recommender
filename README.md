@@ -1,6 +1,6 @@
 # Discoverfy Readme Guide
 
-### What's Discoverfy?
+## What's Discoverfy?
 
 ![App Screenshot](images/screenshot_readme.gif) 
 
@@ -10,17 +10,17 @@ When a user inputs a song they like, the app identifies its cluster and recommen
 
 With its blend of machine learning and Spotify's vast music library, **DiscoverTunes** offers a personalized and engaging way for users to discover hidden gems and expand their musical horizons, making it a must-have for music enthusiasts everywhere.
 
-### Link to App
+## Link to App
 
 TBD
 
-### Resources
+## Resources
 
 - **Billbord Hot 100 List**: [Billboard Hot 100](https://www.billboard.com/charts/hot-100/)
 - **Spotify API**: [Spotify Developer](https://developer.spotify.com/documentation/web-api/)
 - **Million Song Dataset (Subset)**: [Million Song Dataset](http://millionsongdataset.com/)
 
-### File Structure
+## File Structure
 ```
 song-recommender/
 ├── .venv/
