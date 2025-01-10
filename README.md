@@ -1,8 +1,8 @@
 # Discoverfy Readme Guide
 
-## What's Discoverfy?
-
 ![App Screenshot](images/screenshot_readme.gif) 
+
+## What's Discoverfy?
 
 DiscoverTrack is a music recommendation app designed to help users explore new songs tailored to their tastes. By leveraging the Spotify API, the app retrieves data of a song a user enjoys. These features are then analyzed using a KMeans clustering model which groups songs based on their similarity in musical attributes.
 
