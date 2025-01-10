@@ -53,9 +53,28 @@ song-recommender/
 └── README.md
 ```
 
-### Steps to Run the App Locally
+## Steps to Run the App Locally
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/mjpacko/song-recommender
+   cd song-recommender
+   ```
 
-1. clone repo
-2. pip install requirements.txt
-3. update .env with Spotify API credentials
-4. streamlit run command
+2. **Install Requirements**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Update Environment Variables**
+   - Create a `.env` file in the root directory and add your Spotify API credentials:
+     ```
+     SPOTIPY_CLIENT_ID=your_client_id
+     SPOTIPY_CLIENT_SECRET=your_client_secret
+     ```
+
+4. **Run the App**
+   ```bash
+   streamlit run app/app.py
+   ```
+
+Enjoy discovering new music with Discoverfy!
