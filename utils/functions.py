@@ -1,7 +1,14 @@
-import streamlit as st
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials 
+
 import pandas as pd
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+from sklearn.preprocessing import StandardScaler
+from joblib import load
+import random
+from dotenv import load_dotenv
+import os
+import sys
+sys.path.append('.')
 
 def search_song(search_query, artist_name=None):
     try:
@@ -9,6 +16,9 @@ def search_song(search_query, artist_name=None):
         if artist_name:
             search_query += f" artist:{artist_name}"
         
+        # Initialize Spotify client
+        sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
+
         # Search for the track on Spotify
         results = sp.search(q=search_query, type='track', limit=5)
         
@@ -31,20 +41,25 @@ def search_song(search_query, artist_name=None):
             tracks.append(track_info)
         
         return tracks
+    
     except Exception as e:
         st.error(f"An error occurred: {str(e)}")
         return None
-    
+
 def get_track_details(track_id):
+
+    # Initialize Spotify client
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
+
     try:
         track = sp.track(track_id)
         artist_id = track['artists'][0]['id']
         artist = sp.artist(artist_id)
-        
+
         # Extract genres from the artist's profile
         genres = artist.get('genres', [])
-        
-        # Extract track details
+
+        # Create a DataFrame to hold track details
         track_details = {
             'title': track['name'],
             'artist': ', '.join([artist['name'] for artist in track['artists']]),
@@ -52,35 +67,51 @@ def get_track_details(track_id):
             'is_explicit': track['explicit'],
             'album_cover': track['album']['images'][0]['url'] if track['album']['images'] else None,
             'release_year': track['album']['release_date'][:4],
-            'genres': ', '.join(genres)
         }
-        return track_details
+
+        # Create a DataFrame from the track details
+        df = pd.DataFrame([track_details])  # Create a DataFrame with a single row
+
+        # Load the clustered dataset to get the desired column order
+        clustered_df = pd.read_csv('data/7_clustered_dataset.csv') 
+        desired_columns = clustered_df.columns.tolist()
+
+        # Initialize the DataFrame with the first 7 columns
+        df = df.reindex(columns=desired_columns)  # Ensure the DataFrame has the same columns
+
+        # Initialize genre columns with 0/1 encoding after the 7th column
+        for genre in desired_columns[6:]:  # Start from the 8th column
+            if genre in genres:
+                df[genre] = 1  # Set to 1 if the genre is present
+            else:
+                df[genre] = 0  # Set to 0 if the genre is not present
+
+        # Return the DataFrame
+        return df
+
     except Exception as e:
         st.error(f"An error occurred while fetching track details: {str(e)}")
         return None
-
-def genre_encoding(df):
-    # 1. Get all unique genres (no threshold filtering)
-    genres = []
-    for genre_list in df['Genres'].dropna():
-        genre_list = genre_list.split(', ')
-    genres = [genre.strip() for genre in genres]
-    all_genres.extend(genres)
-
-    unique_genres = sorted(list(set(all_genres)))  # Get all unique genres and sort them
-
-    # 2. Create one-hot encoding for all genres
-def encode_all_genres(genre_string):
-    if pd.isna(genre_string):
-        return [0] * len(unique_genres)
     
-    genre_list = genre_string.split(', ')
-    return [1 if genre in genre_list else 0 for genre in unique_genres]
+def create_training_dataset(original_df):
+    # Define the columns to remove
+    columns_to_remove = ['title', 'artist', 'album', 'is_explicit', 'album_cover', 'cluster', 'isHot']
+    
+    # Create a new DataFrame by dropping the specified columns
+    training_df = original_df.drop(columns=columns_to_remove, errors='ignore')  # Use errors='ignore' to avoid errors if columns are missing
 
-    # Create encoded columns
-    genre_encoded = pd.DataFrame(
-        df['genres'].apply(encode_all_genres).tolist(),
-        columns=unique_genres
-)
+    # Initialize and fit the scaler
+    scaler = StandardScaler()
+    scaled_data = scaler.fit_transform(training_df)
+    df_scaled = pd.DataFrame(scaled_data, columns=training_df.columns)
     
+    return df_scaled
+
+def apply_kmeans_model(df_scaled):
+    # Load the pre-trained KMeans model
+    kmeans_model = load('models/kmeans_model.joblib')
     
+    # Predict the clusters for the scaled data
+    cluster_labels = kmeans_model.predict(df_scaled)
+    
+    return cluster_labels
