@@ -28,7 +28,7 @@ song-recommender/
 ├── .streamlit/
 │   └── config.toml
 └── data/
-    ├──
+    ├── 1_hot_100_scraping.csv
     ├── 2_million_song_subset_raw.csv
     ├── 3_combined_clean_dataset.csv
     ├── 4_sp_songs.csv
@@ -43,14 +43,13 @@ song-recommender/
     └── 5_recommender_test.ipynb
 └── models/
     ├── kmeans_1.pkl
-    ├── dbscan_1.pkl
     ├── ...
 └── scaler/
-	  ├── scaler.pkl
+	├── scaler.pkl
 └── utils/
-		├── functions.py
+	├── functions.py
 └── app/
-    ├── recommender_app.py
+    ├── app.py
     └── requirements.txt
 └── README.md
 ```
