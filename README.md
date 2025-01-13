@@ -1,12 +1,8 @@
 # Discoverfy Readme Guide
 
-<<<<<<< HEAD
-### What's Discoverfy?
-=======
 ![App Screenshot](images/interface_gif.gif) 
 
 ## What's Discoverfy?
->>>>>>> e1f5d372d18039ca0c5cf6ef97bba97fde464cda
 
 DiscoverTrack is a music recommendation app designed to help users explore new songs tailored to their tastes. By leveraging the Spotify API, the app retrieves data of a song a user enjoys. These features are then analyzed using a KMeans clustering model which groups songs based on their similarity in musical attributes.
 
@@ -14,7 +10,6 @@ When a user inputs a song they like, the app identifies its cluster and recommen
 
 With its blend of machine learning and Spotify's vast music library, **DiscoverTunes** offers a personalized and engaging way for users to discover hidden gems and expand their musical horizons, making it a must-have for music enthusiasts everywhere.
 
-<<<<<<< HEAD
 ### Screenshot
 
 ![App Screenshot](stills/SpotifySongRecommender_recommendations.png)![Alt Text: Screenshot of the app interface]()
@@ -25,16 +20,6 @@ TBD
 
 ### Resources
 
-### File Structure
-
-=======
-## Link to App
-
-TBD
-
-## Resources
-
-- **Billbord Hot 100 List**: [Billboard Hot 100](https://www.billboard.com/charts/hot-100/)
 - **Spotify API**: [Spotify Developer](https://developer.spotify.com/documentation/web-api/)
 - **Million Song Dataset (Subset)**: [Million Song Dataset](http://millionsongdataset.com/)
 
@@ -70,31 +55,15 @@ song-recommender/
     ├── dbscan_1.pkl
     ├── ...
 └── scaler/
-	  ├── scaler.pkl
+    ├── scaler.pkl
 └── utils/
-		├── functions.py
+    ├── functions.py
 └── app/
     ├── recommender_app.py
     └── requirements.txt
 └── README.md
-
-### Steps to Run the App Locally
-
-1. clone repo
-2. pip install requirements.txt
-3. update .env with Spotify API credentials
-4. streamlit run command
-=======
-    ├── ...
-└── scaler/
-	├── scaler.pkl
-└── utils/
-	├── functions.py
-└── app/
-    ├── app.py
-    └── requirements.txt
-└── README.md
 ```
+
 
 ## Steps to Run the App Locally
 1. **Clone the Repository**
@@ -121,4 +90,3 @@ song-recommender/
    ```
 
 Enjoy discovering new music with Discoverfy!
->>>>>>> e1f5d372d18039ca0c5cf6ef97bba97fde464cda
