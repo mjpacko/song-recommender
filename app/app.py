@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
 from joblib import load
 import sys

@@ -17,7 +17,7 @@ def search_song(search_query, artist_name=None):
             search_query += f" artist:{artist_name}"
         
         # Initialize Spotify client
-        sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
+        sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=st.secrets['SPOTIPY_CLIENT_ID'], client_secret=st.secrets['SPOTIPY_CLIENT_SECRET']))
 
         # Search for the track on Spotify
         results = sp.search(q=search_query, type='track', limit=5)
@@ -49,7 +49,7 @@ def search_song(search_query, artist_name=None):
 def get_track_details(track_id):
 
     # Initialize Spotify client
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=st.secrets['SPOTIPY_CLIENT_ID'], client_secret=st.secrets['SPOTIPY_CLIENT_SECRET']))
 
     try:
         track = sp.track(track_id)
