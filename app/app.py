@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from joblib import load
 import sys
 sys.path.append('.')
 from utils.functions import search_song, get_track_details, create_training_dataset, apply_kmeans_model
