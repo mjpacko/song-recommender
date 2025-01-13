@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import sys
-sys.path.append('.')
+#import sys
+#sys.path.append('.')
 from utils.functions import search_song, get_track_details, create_training_dataset, apply_kmeans_model
 
 # Set the page configuration to wide mode
@@ -9,9 +9,6 @@ st.set_page_config(
     page_title="Discoverfy",
     page_icon="🎵",
     layout="wide")
-
-# Load environment variables
-load_dotenv()
 
 
 ### MAIN FUNCTION ###
